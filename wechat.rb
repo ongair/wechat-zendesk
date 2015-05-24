@@ -23,8 +23,6 @@ module Wechat
         echostr = params[:echostr]
         timestamp = params[:timestamp]
 
-        puts params
-
         array = [token, timestamp, nonce].sort!
         check_str = array.join
 
@@ -32,6 +30,10 @@ module Wechat
         # digest == signature
         resp = echostr if digest == signature
         body resp
+      end
+
+      post :token do
+        puts ">>>> Params #{params}"
       end
     end
   end
