@@ -40,7 +40,10 @@ module Wechat
       end
 
       post :test do
+        content_type 'application/xml'
         puts "In test"
+
+        body ""
       end
     end
   end
