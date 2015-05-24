@@ -1,5 +1,7 @@
 require 'grape'
 require 'digest/sha1'
+require 'wechat'
+require 'nokogiri'
 
 module Wechat
   class API < Grape::API
@@ -33,17 +35,23 @@ module Wechat
       end
 
       post :token do
-        puts "In post"
-        # puts ">>>> Params #{request.body}"
-        raw_xml = request.body.read
-        puts "XML #{raw_xml}"
-      end
-
-      post :test do
         content_type 'application/xml'
-        puts "In test"
+        # format :xml
+        raw_xml = request.body.read
+        notification = Notification.new(raw_xml)
+        # puts raw_xml
+        # body "<xml></xml>"
+        doc = Nokogiri::XML(raw_xml)
+        doc
 
-        body ""
+        response = "<xml>
+          <ToUserName><![CDATA[#{notification.from}]]></ToUserName>
+          <FromUserName><![CDATA[gh_283218bf272e]]></FromUserName>
+          <CreateTime>#{Time.now.to_i}</CreateTime>
+          <MsgType><![CDATA[text]]></MsgType>
+          <Content><![CDATA[#{notification.content}]]></Content>
+          </xml>"
+        Nokogiri::XML(response)
       end
     end
   end
