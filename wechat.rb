@@ -27,7 +27,7 @@ module Wechat
 
         digest = Digest::SHA1.hexdigest check_str
         # digest == signature
-        resp = signature if digest == signature
+        resp = echostr if digest == signature
         resp
       end
     end
