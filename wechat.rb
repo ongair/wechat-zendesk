@@ -23,6 +23,8 @@ module Wechat
         echostr = params[:echostr]
         timestamp = params[:timestamp]
 
+        puts params
+
         array = [token, timestamp, nonce].sort!
         check_str = array.join
 
