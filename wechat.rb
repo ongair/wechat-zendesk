@@ -33,7 +33,9 @@ module Wechat
       end
 
       post :token do
-        puts ">>>> Params #{params}"
+        # puts ">>>> Params #{request.body}"
+        raw_xml = request.body.read
+        puts "XML #{raw_xml}"
       end
     end
   end
