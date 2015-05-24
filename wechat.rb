@@ -4,12 +4,13 @@ require 'digest/sha1'
 module Wechat
   class API < Grape::API
     version 'v1', using: :header, vendor: 'ongair'
-    format :json
+    # format :json
     prefix :api
 
     resource :connections do
       desc "Return if we are working or not"
       get :status do
+        content_type 'application/json'
         true
       end
 
@@ -28,7 +29,7 @@ module Wechat
         digest = Digest::SHA1.hexdigest check_str
         # digest == signature
         resp = echostr if digest == signature
-        resp
+        body resp
       end
     end
   end
