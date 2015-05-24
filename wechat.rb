@@ -11,6 +11,11 @@ module Wechat
       get :status do
         true
       end
+
+      post :token do
+        token = params[:token]
+        { success: true, token: token }
+      end
     end
   end
 end
