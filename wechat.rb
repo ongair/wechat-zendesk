@@ -42,7 +42,7 @@ module Wechat
         # puts raw_xml
         # body "<xml></xml>"
         doc = Nokogiri::XML(raw_xml)
-        doc
+        # doc
 
         response = "<xml>
           <ToUserName><![CDATA[#{notification.from}]]></ToUserName>
