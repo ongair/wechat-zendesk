@@ -54,7 +54,7 @@ module Wechat
           <Content><![CDATA[#{notification.content}]]></Content>
           </xml>"
         # Nokogiri::XML(response)
-        body "<xml></xml>"
+        body ""
       end
     end
   end
