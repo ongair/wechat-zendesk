@@ -36,6 +36,8 @@ module Wechat
 
       post :token do
         content_type 'application/xml'
+
+        puts 'I have been notified'
         # format :xml
         raw_xml = request.body.read
         notification = Notification.new(raw_xml)
