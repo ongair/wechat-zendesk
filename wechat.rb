@@ -39,7 +39,7 @@ module Wechat
         # format :xml
         raw_xml = request.body.read
         notification = Notification.new(raw_xml)
-        # puts raw_xml
+        puts raw_xml
         # body "<xml></xml>"
         doc = Nokogiri::XML(raw_xml)
         # doc
@@ -51,7 +51,8 @@ module Wechat
           <MsgType><![CDATA[text]]></MsgType>
           <Content><![CDATA[#{notification.content}]]></Content>
           </xml>"
-        Nokogiri::XML(response)
+        # Nokogiri::XML(response)
+        body "<xml></xml>"
       end
     end
   end
